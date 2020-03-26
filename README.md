@@ -6,14 +6,13 @@ The intent of this repo is to provide a cost effective way of running a Terraria
 This repo is multi-facted and contains many different Gradle modules for different purposes.
 
 ### [aws](./aws/README.md)
-The `core` module combines the other modules to form high-level abstractions for the entire Discord Bot API. This is the module most users will want when making bots.
+The `aws` module includes all of the Lambda functions which will be interacting with EC2 and invoked via API Gateway
 
 ### [discordBot](./discordBot/README.md)
-The `rest` module provides a low-level HTTP client specifically for Discord which properly handles Discord's [ratelimiting system](https://discordapp.com/developers/docs/topics/rate-limits).
+The `discordBot` module provides a [Discord4J](https://github.com/Discord4J/Discord4J) implementation of a discord bot.
 
 ### [docker](./docker/README.md)
-The `gateway` module provides a low-level WebSocket client for interacting with the [Discord Gateway](https://discordapp.com/developers/docs/topics/gateway).
+The `docker` module provides a docker file which installs Terraria server on a Ubuntu machine.
 
 ### [http-api](./http-api/README.md)
-The `voice` module provides a client to manipulate audio through [Voice Connections](https://discordapp.com/developers/docs/topics/voice-connections).
-
+The `http-api` module provides common Java PoJo objects used for Http return types. These objects are returned via AWS Lambda to the Discord bot, and then output to the client as a discord message.
