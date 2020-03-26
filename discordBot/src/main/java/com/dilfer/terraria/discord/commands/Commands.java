@@ -1,5 +1,6 @@
 package com.dilfer.terraria.discord.commands;
 
+import com.dilfer.terraria.discord.http.HttpRequestRunner;
 import discord4j.core.object.entity.Message;
 import discord4j.core.object.entity.MessageChannel;
 import reactor.core.publisher.Mono;
@@ -33,8 +34,9 @@ public enum Commands
         return infoMessage;
     }
 
-    public Mono<Message> run(MessageChannel messageChannel)
+    public Mono<Message> run(MessageChannel messageChannel,
+                             HttpRequestRunner httpRequestRunner) throws InterruptedException
     {
-        return command.run(messageChannel);
+        return command.run(messageChannel, httpRequestRunner);
     }
 }

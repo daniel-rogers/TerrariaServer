@@ -1,5 +1,8 @@
 rootProject.name = 'TerrariaServer'
 include 'aws'
+include 'aws:startLambda'
+include 'aws:stopLambda'
+include 'aws:infoLambda'
 include 'discordBot'
 include 'docker'
 include 'http-api'

@@ -1,5 +1,6 @@
 package com.dilfer.terraria.discord.commands;
 
+import com.dilfer.terraria.discord.http.HttpRequestRunner;
 import discord4j.core.object.entity.Message;
 import discord4j.core.object.entity.MessageChannel;
 import reactor.core.publisher.Mono;
@@ -11,7 +12,8 @@ import java.util.stream.Collectors;
 public class HelpCommand implements Command
 {
     @Override
-    public Mono<Message> run(MessageChannel messageChannel)
+    public Mono<Message> run(MessageChannel messageChannel,
+                             HttpRequestRunner httpRequestRunner)
     {
         List<Commands> commands = Arrays.stream(Commands.values())
                 .filter(cmd -> !Commands.help.equals(cmd))

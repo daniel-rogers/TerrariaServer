@@ -1,39 +1,20 @@
 package com.dilfer.terraria.discord.commands;
 
+import com.dilfer.terraria.discord.http.HttpRequestRunner;
+import com.dilfer.terraria.http.api.StartServerResponse;
 import discord4j.core.object.entity.Message;
 import discord4j.core.object.entity.MessageChannel;
 import reactor.core.publisher.Mono;
 
-import java.io.IOException;
 import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 
 public class StartCommand implements Command
 {
     @Override
-    public Mono<Message> run(MessageChannel messageChannel)
+    public Mono<Message> run(MessageChannel messageChannel,
+                             HttpRequestRunner httpRequestRunner) throws InterruptedException
     {
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest startRequest = HttpRequest
-                .newBuilder()
-                .uri(URI.create("http://checkip.amazonaws.com/"))
-                .build();
-        try
-        {
-            HttpResponse<String> response =
-                    client.send(startRequest, HttpResponse.BodyHandlers.ofString());
-            return messageChannel.createMessage("Your IP is " + response.body());
-        }
-        catch (IOException e)
-        {
-            return messageChannel.createMessage(e.getMessage());
-        }
-        catch (InterruptedException e)
-        {
-            Thread.currentThread().interrupt();
-            return messageChannel.createMessage(e.getMessage());
-        }
+        String response = httpRequestRunner.getResponse(URI.create("http://checkmyip.amazonaws.com"), String.class);
+        return messageChannel.createMessage(response.toString());
     }
 }
