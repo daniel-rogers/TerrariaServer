@@ -14,7 +14,7 @@ public class StartCommand implements Command
     public Mono<Message> run(MessageChannel messageChannel,
                              HttpRequestRunner httpRequestRunner) throws InterruptedException
     {
-        String response = httpRequestRunner.getResponse(URI.create("http://checkmyip.amazonaws.com"), String.class);
+        String response = httpRequestRunner.getResponse(URI.create("http://checkip.amazonaws.com/"), String.class);
         return messageChannel.createMessage(response.toString());
     }
 }

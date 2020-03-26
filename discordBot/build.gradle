@@ -7,6 +7,16 @@ version '0.1'
 
 sourceCompatibility = 1.11
 
+task zip(type: Zip, dependsOn: jar) {
+    group = 'build'
+    description = 'Zips up the module and all of its dependencies (transitives included).'
+    from 'src/dist'
+    into('lib') {
+        from(jar)
+        from configurations.runtime
+    }
+}
+
 dependencies {
     compile project(':http-api')
     compile 'ch.qos.logback:logback-classic:1.3.0-alpha4'
