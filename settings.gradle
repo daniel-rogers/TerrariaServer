@@ -1,0 +1,6 @@
+rootProject.name = 'TerrariaServer'
+include 'aws'
+include 'discordBot'
+include 'docker'
+include 'http-api'
+

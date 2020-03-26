@@ -1,0 +1,13 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.11
+
+dependencies {
+    compile group: 'com.discord4j', name: 'discord4j-core', version: '3.0.13'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
